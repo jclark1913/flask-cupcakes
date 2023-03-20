@@ -56,7 +56,7 @@ def create_cupcake():
 
 @app.route("/api/cupcakes/<int:cupcake_id>", methods=["PATCH"])
 def update_cupcake_info(cupcake_id):
-    """Delete a cupcake.
+    """Update a cupcake.
 
     Returns JSON {'cupcake': {id, flavor, size, rating, image}}"""
 
@@ -67,6 +67,7 @@ def update_cupcake_info(cupcake_id):
     curr_cupcake.rating = request.json.get("rating", curr_cupcake.rating)
     curr_cupcake.image = request.json.get("image", curr_cupcake.image)
 
+    #add note here
     if not curr_cupcake.image:
         curr_cupcake.image = DEFAULT_IMG_URL
 
@@ -81,7 +82,7 @@ def update_cupcake_info(cupcake_id):
 def delete_cupcake(cupcake_id):
     """Delete a cupcake.
 
-    Returns JSON {"deleted": cupcake_id }"""
+    Returns JSON {"deleted": cupcake_id}"""
 
     curr_cupcake = Cupcake.query.get_or_404(cupcake_id)
 
