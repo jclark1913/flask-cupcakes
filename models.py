@@ -4,6 +4,9 @@ from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
 
+#default url if image is not passed
+URL = "https://tinyurl.com/demo-cupcake"
+
 
 def connect_db(app):
     """Connect to database."""
@@ -41,10 +44,11 @@ class Cupcake(db.Model):
     image = db.Column(
         db.Text,
         nullable=False,
-        default="https://tinyurl.com/demo-cupcake"
+        default=URL
     )
 
     def serialize(self):
+        """Serialize to dictionary"""
         return {
             "id": self.id,
             "flavor": self.flavor,
