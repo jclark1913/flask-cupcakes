@@ -5,7 +5,7 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 #default url if image is not passed
-URL = "https://tinyurl.com/demo-cupcake"
+DEFAULT_IMG_URL = "https://tinyurl.com/demo-cupcake"
 
 
 def connect_db(app):
@@ -44,7 +44,7 @@ class Cupcake(db.Model):
     image = db.Column(
         db.Text,
         nullable=False,
-        default=URL
+        default=DEFAULT_IMG_URL
     )
 
     def serialize(self):
