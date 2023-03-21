@@ -1,7 +1,7 @@
 """Flask app for Cupcakes"""
 
 import os
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, redirect, render_template
 from models import db, connect_db, Cupcake, DEFAULT_IMG_URL
 
 app = Flask(__name__)
@@ -10,6 +10,12 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
 app.config['SQLALCHEMY_ECHO'] = True
 
 connect_db(app)
+
+@app.get("/")
+def show_homepage():
+    """Shows the homepage with list of cupcakes and add cupcake form."""
+
+    return redirect("static/base.html")
 
 @app.get("/api/cupcakes")
 def list_all_cupcakes():
